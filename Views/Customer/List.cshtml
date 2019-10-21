@@ -1,0 +1,41 @@
+﻿@model IEnumerable<LibraryManagement.ViewModel.CustomerViewModel>
+
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>List</h1>
+
+<p>
+    <a asp-controller="Customer" asp-action="Create">Create New Customer</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Borrowed books count</th>
+            <th>Edit Customer</th>
+            <th>Delete Customer</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a class="btn btn-info" asp-action="Update" asp-controller="Customer" asp-route-id="@item.CustomerId">Update</a> 
+            </td>
+            <td> 
+                <a class="btn btn-danger" asp-action="Delete" asp-controller="Customer" asp-route-id="@item.CustomerId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
